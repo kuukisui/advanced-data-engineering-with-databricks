@@ -42,6 +42,11 @@
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT * FROM no_part_table
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## Schema Considerations
 # MAGIC When configuring tables in Delta Lake, make sure you consider the following.
@@ -295,9 +300,27 @@ display(df)
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT * FROM no_part_table
+
+# COMMAND ----------
+
 # MAGIC %sql 
 # MAGIC -- TODO
-# MAGIC <FILL-IN>
+# MAGIC OPTIMIZE no_part_table
+# MAGIC ZORDER BY (timestamp)
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE BLOOMFILTER INDEX
+# MAGIC ON TABLE no_part_table
+# MAGIC FOR COLUMNS(key OPTIONS (fpp=0.1, numItems=200))
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESCRIBE HISTORY no_part_table
 
 # COMMAND ----------
 
