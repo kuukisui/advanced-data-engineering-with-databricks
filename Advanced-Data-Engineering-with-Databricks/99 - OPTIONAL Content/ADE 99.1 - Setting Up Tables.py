@@ -156,6 +156,25 @@
 
 # COMMAND ----------
 
+table = DA.db_name
+
+query = f"SHOW TABLES IN {DA.db_name}"
+print(query)
+
+# COMMAND ----------
+
+spark.sql(query).display()
+
+# COMMAND ----------
+
+spark.sql(query).collect()
+
+# COMMAND ----------
+
+spark.sql(query).collect()[0][1]
+
+# COMMAND ----------
+
 def parse_table_keys(database, table=None):
     table_keys = {}
     if table:
@@ -186,8 +205,20 @@ parse_table_keys(DA.db_name)
 
 # MAGIC %sql
 # MAGIC -- TODO
-# MAGIC <FILL_IN> ${da.db_name}.challenge
-# MAGIC <FILL_IN>
+# MAGIC CREATE OR REPLACE TABLE ${da.db_name}.challenge
+# MAGIC (
+# MAGIC    a INT
+# MAGIC   ,b INT
+# MAGIC   ,c INT
+# MAGIC   ,d INT
+# MAGIC )
+# MAGIC COMMENT "Managed table"
+# MAGIC TBLPROPERTIES ('contains_pii' = False) 
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESCRIBE EXTENDED ${da.db_name}.challenge
 
 # COMMAND ----------
 
