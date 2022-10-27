@@ -51,6 +51,12 @@ print(f"Total: {total:,}")
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC 
+# MAGIC SELECT * FROM bronze
+
+# COMMAND ----------
+
 from pyspark.sql import functions as F
 
 json_schema = "device_id LONG, time TIMESTAMP, heartrate DOUBLE"

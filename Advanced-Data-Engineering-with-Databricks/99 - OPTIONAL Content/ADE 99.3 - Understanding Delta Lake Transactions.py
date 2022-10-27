@@ -225,6 +225,16 @@ display_delta_log("bronze")
 # COMMAND ----------
 
 # MAGIC %sql
+# MAGIC SELECT * FROM bronze ORDER BY 1
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM updates ORDER BY 1
+
+# COMMAND ----------
+
+# MAGIC %sql
 # MAGIC MERGE INTO bronze b
 # MAGIC USING updates u
 # MAGIC ON b.id=u.id
@@ -234,6 +244,11 @@ display_delta_log("bronze")
 # MAGIC   THEN DELETE
 # MAGIC WHEN NOT MATCHED AND u.type = "insert"
 # MAGIC   THEN INSERT *
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM bronze ORDER BY 1
 
 # COMMAND ----------
 
